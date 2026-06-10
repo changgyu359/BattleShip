@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
 
 public enum BoardType
 {
@@ -10,16 +11,25 @@ public enum BoardType
     ship
 }
 
+public enum ReturnAttackState
+{
+    nullification,
+    miss,
+    hit
+}
+
 public class BoardManager : MonoBehaviour
 {
-    private static BoardManager instance;
-    public static BoardManager Instance
-    { get { return instance; } }
+
+    
 
     private const int boardLength = 11;
     private BoardType[,] board = new BoardType[boardLength, boardLength];
     [SerializeField]
     private Tilemap tilemap;
+    
+    public Tilemap Tilemap
+    { get { return tilemap; } }
 
     [Header("타일")]
     [SerializeField] private TileBase waterTile;
@@ -31,17 +41,21 @@ public class BoardManager : MonoBehaviour
 
     [SerializeField]
     private Ship[] ships;
+    public int PlaceCount
+    { get; set; }
+
+    private int remainShips;
+    public int RemainShips
+    { get { return remainShips; } }
 
     public bool isPlaying
     { get; set; }
 
+    public List<Vector3Int> LastSunkShipCells { get; private set; }
+
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-
+        
         isPlaying = false;
     }
 
@@ -71,8 +85,12 @@ public class BoardManager : MonoBehaviour
             }
         }
 
+        PlaceCount = 0;
+        remainShips = ships.Length;
         // 시작할 때 미리 배치 불가 구역을 한번 계산해 줍니다.
         UpdateInvalidTiles();
+
+        
     }
 
     private bool CanPlaceShip(int _x, int _y, Ship _ship)
@@ -133,7 +151,8 @@ public class BoardManager : MonoBehaviour
         else
             correctedPosition.y -= distanceToHead;
 
-        Vector3Int cellPos = tilemap.WorldToCell(correctedPosition);
+        Vector3 localPos = tilemap.transform.InverseTransformPoint(correctedPosition);
+        Vector3Int cellPos = tilemap.LocalToCell(localPos);
 
         if (CanPlaceShip(cellPos.x, cellPos.y, ship))
         {
@@ -224,7 +243,7 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    public void GameStart()
+    public void GameStart(bool isEnemyBoard)
     {
         isPlaying = true;
 
@@ -233,17 +252,33 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = 0; y < boardLength; y++)
             {
-                if (board[x, y] == BoardType.ship || tilemap.GetTile(new Vector3Int(x, y, 0)) == invalidTile)
+                if (tilemap.GetTile(new Vector3Int(x, y, 0)) == invalidTile)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), waterTile);
                 }
             }
         }
 
+        if( isEnemyBoard )
+        {
+            for(int x = 0;x < boardLength; x++)
+            {
+                for(int y = 0;y < boardLength; y++)
+                {
+                    if (board[x,y]==BoardType.ship)
+                    {
+                        tilemap.SetTile(new Vector3Int(x,y, 0), waterTile);
+                    }
+                }
+            }
+            
+        }
+
         foreach (Ship ship in ships)
         {
             ship.gameObject.SetActive(false);
         }
+
     }
 
     private Ship GetShipAt(Vector3Int cellPos)
@@ -256,15 +291,21 @@ public class BoardManager : MonoBehaviour
         return null;
     }
 
-    public void AttackCell(Vector3Int cellPos)
+    public ReturnAttackState AttackCell(Vector3Int cellPos)
     {
-        if (cellPos.x < 0 || cellPos.x >= boardLength || cellPos.y < 0 || cellPos.y >= boardLength) return;
-        if (board[cellPos.x, cellPos.y] == BoardType.hit || board[cellPos.x, cellPos.y] == BoardType.miss) return;
+        LastSunkShipCells = null;
+
+        if (cellPos.x < 0 || cellPos.x >= boardLength || cellPos.y < 0 || cellPos.y >= boardLength) 
+            return ReturnAttackState.nullification;
+        if (board[cellPos.x, cellPos.y] == BoardType.hit || board[cellPos.x, cellPos.y] == BoardType.miss) 
+            return ReturnAttackState.nullification;
 
         if (board[cellPos.x, cellPos.y] == BoardType.water)
         {
             board[cellPos.x, cellPos.y] = BoardType.miss;
             tilemap.SetTile(cellPos, missTile);
+
+            return ReturnAttackState.miss;
         }
         else if (board[cellPos.x, cellPos.y] == BoardType.ship)
         {
@@ -276,11 +317,15 @@ public class BoardManager : MonoBehaviour
             {
                 targetShip.TakeDamage();
             }
+            return ReturnAttackState.hit;
         }
+        return ReturnAttackState.nullification;
     }
 
     public void OnShipSunk(Ship sunkShip)
     {
+        LastSunkShipCells = new List<Vector3Int>(sunkShip.occupiedCells);
+
         foreach (Vector3Int cell in sunkShip.occupiedCells)
         {
             for (int i = -1; i <= 1; i++)
@@ -300,6 +345,52 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
-        BattleshipManger.Instance.OnShipSunk();
+        remainShips--;
+        BattleshipManger.Instance.CheckGameOver(this);
+    }
+
+    public void ForceAttackResult(Vector3Int cellPos, bool isHit)
+    {
+        if (cellPos.x < 0 || cellPos.x >= boardLength || cellPos.y < 0 || cellPos.y >= boardLength) return;
+
+        board[cellPos.x, cellPos.y] = isHit ? BoardType.hit : BoardType.miss;
+        tilemap.SetTile(cellPos, isHit ? hitTile : missTile);
+    }
+
+    public void ForceRevealSunkArea(int[] sunkX, int[] sunkY)
+    {
+        if (sunkX == null || sunkY == null || sunkX.Length != sunkY.Length) return;
+
+        for (int k = 0; k < sunkX.Length; k++)
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    Vector3Int targetPos = new Vector3Int(sunkX[k] + i, sunkY[k] + j, 0);
+
+                    if (targetPos.x >= 0 && targetPos.y >= 0 && targetPos.x < boardLength && targetPos.y < boardLength)
+                    {
+                        // 내가 보는 상대 보드 격자가 아직 아무것도 안 맞은 기본 상태(water)라면 miss로 강제 변경
+                        if (board[targetPos.x, targetPos.y] == BoardType.water)
+                        {
+                            board[targetPos.x, targetPos.y] = BoardType.miss;
+                            tilemap.SetTile(targetPos, missTile);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void NetworkShipSunk()
+    {
+        remainShips--;
+        BattleshipManger.Instance.CheckGameOver(this);
+    }
+
+    public void SetRemainShips(int _count)
+    {
+        remainShips = _count;
     }
 }

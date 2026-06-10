@@ -12,12 +12,19 @@ public class Ship : MonoBehaviour
 
     private bool isHorizon = true;
     public bool IsHorizon => isHorizon;
+    private bool rememberIsHorizon = true;
 
     private bool isDragging = false;
     private Vector3 offset;
     private Vector3 originalPosition;
 
     public List<Vector3Int> occupiedCells = new List<Vector3Int>();
+
+    [SerializeField]
+    private BoardManager boardManager;
+
+
+    private bool isPlaced=false;
 
 
     private void Start()
@@ -30,8 +37,8 @@ public class Ship : MonoBehaviour
         health -= 1;
         if(health <= 0)
         {
-            
-            BoardManager.Instance.OnShipSunk(this);
+
+            boardManager.OnShipSunk(this);
         }
     }
 
@@ -40,17 +47,18 @@ public class Ship : MonoBehaviour
         if (isDragging && Input.GetKeyDown(KeyCode.R))
         {
             ChangeDirection();
-            // 회전했을 때도 즉시 스냅 위치를 업데이트해 줍니다.
             UpdateDragPosition();
         }
     }
 
     private void OnMouseDown()
     {
+        
         originalPosition = transform.position;
-        BoardManager.Instance.RemoveFromBoard(this);
+        boardManager.RemoveFromBoard(this);
+        rememberIsHorizon = isHorizon;
 
-        // 피봇이 Center이므로 마우스 포인터와의 오프셋을 구합니다.
+        
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         isDragging = true;
     }
@@ -70,7 +78,8 @@ public class Ship : MonoBehaviour
         Vector3 rawTargetPos = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
         // 현재 마우스 위치가 속한 타일의 정수 좌표를 구함
-        Vector3Int cellPosition = tilemap.WorldToCell(rawTargetPos);
+        Vector3 localPos = tilemap.transform.InverseTransformPoint(rawTargetPos);
+        Vector3Int cellPosition = tilemap.LocalToCell(localPos);
         // 그 타일의 월드 정중앙 좌표를 가져옴
         Vector3 cellCenter = tilemap.GetCellCenterWorld(cellPosition);
 
@@ -95,22 +104,28 @@ public class Ship : MonoBehaviour
 
         // 드래그 중에 이미 완전히 정렬된 좌표(transform.position)를 사용하므로
         // TryPlaceShip 내부 로직이 아주 명확해집니다.
-        if (BoardManager.Instance.TryPlaceShip(transform.position, this))
+        if (boardManager.TryPlaceShip(transform.position, this))
         {
             // 배치 성공 시 현재 위치 고정
             originalPosition = transform.position;
+            if(!isPlaced)
+                boardManager.PlaceCount++;
+            isPlaced = true;
         }
         else
         {
             // 배치 실패 시 원래 위치로 복귀 후 해당 자리에 다시 세팅
+            if (rememberIsHorizon != isHorizon)
+                ChangeDirection();
             transform.position = originalPosition;
-            BoardManager.Instance.TryPlaceShip(transform.position, this);
+            boardManager.TryPlaceShip(transform.position, this);
         }
     }
 
     public void ChangeDirection()
     {
         isHorizon = !isHorizon;
+        
         gameObject.transform.Rotate(0, 0, 90f);
     }
 

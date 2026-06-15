@@ -1147,6 +1147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleshipManger
   player1Board: {fileID: 1333790871}
   player2Board: {fileID: 1754021162}
+  shipParent: {fileID: 1870977268}
 --- !u!1 &449505342
 GameObject:
   m_ObjectHideFlags: 0
@@ -4127,7 +4128,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1547951722}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1579825911}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ExitBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1547951722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4263,7 +4276,6 @@ Transform:
   m_Children:
   - {fileID: 2039752777}
   - {fileID: 510864180}
-  - {fileID: 1870977269}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645819501
@@ -4300,8 +4312,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
-  m_SizeDelta: {x: 246.0673, y: 75}
+  m_AnchoredPosition: {x: 0, y: 448.7}
+  m_SizeDelta: {x: 400, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1645819503
 MonoBehaviour:
@@ -5335,7 +5347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1870977269
 Transform:
   m_ObjectHideFlags: 0
@@ -5354,7 +5366,7 @@ Transform:
   - {fileID: 1539938875}
   - {fileID: 1701345155}
   - {fileID: 1726882743}
-  m_Father: {fileID: 1620842127}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949696642
 GameObject:
@@ -6918,6 +6930,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1620842127}
+  - {fileID: 1870977269}
   - {fileID: 1949696644}
   - {fileID: 426086733}
   - {fileID: 1718038437}

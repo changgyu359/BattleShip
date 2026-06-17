@@ -3,8 +3,12 @@ using UnityEngine;
 public class Slot
 {
     private ItemSO curItemData;
+    public ItemSO CurItemData
+    { get { return curItemData; } }
 
     private int curItemCount=0;
+    public int CurItemCount
+    { get { return curItemCount; } }
 
 
     public void SetItem(ItemSO _data)
@@ -44,7 +48,7 @@ public class Slot
 
     public void ItemDown(int _count)
     {
-        if (curItemCount <= 0)
+        if (IsEmpty())
         {
             Debug.LogError("¾ÆÀÌÅÛ À¾´Ù");
             return;
@@ -55,7 +59,7 @@ public class Slot
         }
 
         curItemCount -= _count;
-        if (curItemCount <= 0)
+        if (IsEmpty())
             curItemData = null;
     }
 

@@ -6,4 +6,5 @@ public class ItemSO : ScriptableObject
     public string itemName;
     public int max;
     public int sellPrice;
+    public Sprite itemImage;
 }

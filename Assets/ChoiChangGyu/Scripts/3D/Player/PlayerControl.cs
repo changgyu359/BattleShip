@@ -22,6 +22,9 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+            UIManager3D.Instance.ToggleInventory();
+
         if(IsInteracting)
         {
             moveDirection = Vector3.zero;

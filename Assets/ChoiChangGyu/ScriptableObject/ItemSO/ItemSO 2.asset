@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad1319876293a345b3b72a58402d17f, type: 3}
-  m_Name: OreSO 3
-  m_EditorClassIdentifier: Assembly-CSharp::OreSO
-  oreIndex: 3
+  m_Script: {fileID: 11500000, guid: 0ffcea28fc823c443955fb8c4b586972, type: 3}
+  m_Name: ItemSO 2
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: 2
+  max: 2
+  sellPrice: 10
+  itemImage: {fileID: 21300092, guid: bb76618f4bae74c83b9d6654d0b2a47e, type: 3}

@@ -6,6 +6,9 @@ public class UIManager3D : MonoBehaviour
     public static UIManager3D Instance
     { get { return instance; } }
 
+    [SerializeField]
+    private GameObject invenPannel;
+
     private void Awake()
     {
         if (instance == null)
@@ -14,9 +17,9 @@ public class UIManager3D : MonoBehaviour
             Destroy(gameObject);
     }
 
+   
 
-    [SerializeField]
-    private GameObject invenPannel;
+    
 
     public void ToggleInventory()
     {

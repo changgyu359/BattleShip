@@ -9,7 +9,7 @@ public class OreSpawnManager : MonoBehaviour
     private Transform[] spawnPoint;
     [SerializeField]
     private OreSO[] spawnOreData;
-    private float spawnInterval = 60f;
+    private float spawnInterval = 30f;
 
     private List<Ore> oreList= new List<Ore>();
 
@@ -29,15 +29,15 @@ public class OreSpawnManager : MonoBehaviour
 
     private void SpawnOre()
     {
-        OreSO oreData = spawnOreData[Random.Range(0,spawnOreData.Length)];
+        
 
         
         for(int i = 0;i<oreList.Count;i++)
         {
             if (!oreList[i].gameObject.activeSelf)
             {
+                OreSO oreData = spawnOreData[Random.Range(0, spawnOreData.Length)];
                 oreList[i].Setup(oreData);
-                return;
             }
         }
 

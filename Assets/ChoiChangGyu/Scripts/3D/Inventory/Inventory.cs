@@ -8,11 +8,15 @@ public class Inventory : MonoBehaviour
     public int SlotCount
     { get { return slots.Length; } }
 
-    private void Awake()
+    
+ 
+
+    public void InitInventory()
     {
         slots = new Slot[slotCount];
+        
 
-        for(int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
             slots[i] = new Slot();
     }
 
@@ -30,7 +34,7 @@ public class Inventory : MonoBehaviour
                 slots[index].SetItem(_itemData);
         }
         else 
-            slots[index].SetItem(_itemData);
+            slots[index].ItemUp(1);
     }
 
     public void RemoveOneItem(ItemSO _itemData)
@@ -77,13 +81,17 @@ public class Inventory : MonoBehaviour
 
     private int FindFirstItem(ItemSO _itemData)
     {
+        
         for(int i = 0;i<slots.Length;i++)
         {
+            
             if (slots[i].CurItemData == _itemData && !slots[i].IsFull())
             {
+                
                 return i;
             }
         }
+        
         return -1;
     }
 

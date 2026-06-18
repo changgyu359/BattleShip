@@ -11,12 +11,14 @@ public class InventoryUI : MonoBehaviour
 
     private SlotUI[] slotUIArray;
 
-    private void Start()
+ 
+
+    public void InitInventoryUI()
     {
         slotUIArray = new SlotUI[inven.SlotCount];
-        for(int i = 0;i<slotUIArray.Length;i++)
+        for (int i = 0; i < slotUIArray.Length; i++)
         {
-            SlotUI slotUI = Instantiate(slotPF,inventoryPannel.transform);
+            SlotUI slotUI = Instantiate(slotPF, inventoryPannel.transform);
             slotUIArray[i] = slotUI;
         }
         Redraw();

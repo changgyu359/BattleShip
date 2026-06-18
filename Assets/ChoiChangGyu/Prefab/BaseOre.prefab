@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6033374438075596315}
   - component: {fileID: 3661441143744958747}
   - component: {fileID: 8793067374682854963}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseOre
   m_TagString: Ore
   m_Icon: {fileID: 0}
@@ -54,7 +54,6 @@ MonoBehaviour:
   - {fileID: 8208570829876523971}
   - {fileID: 2441219717075168944}
   - {fileID: 8575978498402281307}
-  dropData: {fileID: 0}
 --- !u!65 &8793067374682854963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,9 +139,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4896268117862548436, guid: 3d4debb85f8bcf048b014d39073d29ef, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408960745862730697, guid: 3d4debb85f8bcf048b014d39073d29ef, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8831831666521383262, guid: 3d4debb85f8bcf048b014d39073d29ef, type: 3}
       propertyPath: m_Name
       value: URP_Orange Citrine Rock Cluster A 1K
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831831666521383262, guid: 3d4debb85f8bcf048b014d39073d29ef, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8831831666521383262, guid: 3d4debb85f8bcf048b014d39073d29ef, type: 3}
       propertyPath: m_IsActive
@@ -151,6 +162,10 @@ PrefabInstance:
     - target: {fileID: 8831831666521383262, guid: 3d4debb85f8bcf048b014d39073d29ef, type: 3}
       propertyPath: m_TagString
       value: Ore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132121617461421640, guid: 3d4debb85f8bcf048b014d39073d29ef, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -175,6 +190,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6033374438075596315}
     m_Modifications:
+    - target: {fileID: 5936824211410706064, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6093751809971252370, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -231,9 +250,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6371088441332787985, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6694425846037771819, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
       propertyPath: m_Name
       value: URP_Crystal Rock Cluster A 1K
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694425846037771819, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6694425846037771819, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
       propertyPath: m_IsActive
@@ -242,6 +269,10 @@ PrefabInstance:
     - target: {fileID: 6694425846037771819, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
       propertyPath: m_TagString
       value: Ore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287526776124493453, guid: 875bee31bc3bc354b96c52164a3b5d21, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -266,6 +297,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6033374438075596315}
     m_Modifications:
+    - target: {fileID: 4867777896581352139, guid: 651d2dc1ebed294439be75846c1fd204, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297538488887213898, guid: 651d2dc1ebed294439be75846c1fd204, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5408613040730364673, guid: 651d2dc1ebed294439be75846c1fd204, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -327,12 +366,20 @@ PrefabInstance:
       value: URP_Emerald Rock Cluster A 1K
       objectReference: {fileID: 0}
     - target: {fileID: 5960070064261004562, guid: 651d2dc1ebed294439be75846c1fd204, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960070064261004562, guid: 651d2dc1ebed294439be75846c1fd204, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5960070064261004562, guid: 651d2dc1ebed294439be75846c1fd204, type: 3}
       propertyPath: m_TagString
       value: Ore
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134720508892966743, guid: 651d2dc1ebed294439be75846c1fd204, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -413,9 +460,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6241079125839950528, guid: c9d134a61f406c74798b3bd29f1c8f4d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6652964456437015396, guid: c9d134a61f406c74798b3bd29f1c8f4d, type: 3}
       propertyPath: m_Name
       value: URP_Amethyst Rock Cluster A 1K
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652964456437015396, guid: c9d134a61f406c74798b3bd29f1c8f4d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6652964456437015396, guid: c9d134a61f406c74798b3bd29f1c8f4d, type: 3}
       propertyPath: m_IsActive
@@ -424,6 +479,14 @@ PrefabInstance:
     - target: {fileID: 6652964456437015396, guid: c9d134a61f406c74798b3bd29f1c8f4d, type: 3}
       propertyPath: m_TagString
       value: Ore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671437851301087041, guid: c9d134a61f406c74798b3bd29f1c8f4d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051912105436717789, guid: c9d134a61f406c74798b3bd29f1c8f4d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

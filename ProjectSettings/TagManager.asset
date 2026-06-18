@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ore
+  - DropItem
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Land
   - Water
   - UI
-  - 
-  - 
+  - DropItem
+  - Ore
   - 
   - 
   - 

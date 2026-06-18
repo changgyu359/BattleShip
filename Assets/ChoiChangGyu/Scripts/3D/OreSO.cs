@@ -4,6 +4,6 @@ using UnityEngine;
 public class OreSO : ScriptableObject
 {
     public int oreIndex;
-    
+    public ItemSO itemData;
     
 }

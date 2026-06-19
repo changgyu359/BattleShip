@@ -6,11 +6,12 @@ public class PlayerInventory : MonoBehaviour
     public static PlayerInventory Instance
     { get { return instance; } }
 
-    [SerializeField]
-    private Inventory inventory;
+    
+    public Inventory inventory;
 
-    [SerializeField]
-    private InventoryUI invenUI;
+    public InventoryUI invenUI;
+
+    
 
 
     private void Awake()
@@ -25,10 +26,11 @@ public class PlayerInventory : MonoBehaviour
     }
 
 
-    public void GetItem(ItemSO _itemData)
+    public bool GetItem(ItemSO _itemData)
     {
-        inventory.AddOneItem(_itemData);
+        bool result=inventory.AddOneItem(_itemData);
         invenUI.Redraw();
+        return result;
     }
 
 

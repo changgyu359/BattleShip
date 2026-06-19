@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
     }
 
     
-    public void AddOneItem(ItemSO _itemData)
+    public bool AddOneItem(ItemSO _itemData)
     {
         int index=FindFirstItem(_itemData);
 
@@ -29,12 +29,21 @@ public class Inventory : MonoBehaviour
         {
             index = FindFirstEmpty();
             if(index == -1)
+            {
                 Debug.LogError("인벤토리가 가득합니다!");
+                return false;
+            }
             else
+            {
                 slots[index].SetItem(_itemData);
+                return true;
+            }
         }
-        else 
+        else
+        {
             slots[index].ItemUp(1);
+            return true;
+        }
     }
 
     public void RemoveOneItem(ItemSO _itemData)
@@ -50,7 +59,7 @@ public class Inventory : MonoBehaviour
     {
         if(HasItem(_itemData, _count))
         {
-            while (_count <= 0)
+            while (_count > 0)
             {
                 int index = FindLowerItem(_itemData);
                 int tempCount = slots[index].CurItemCount;
@@ -119,7 +128,31 @@ public class Inventory : MonoBehaviour
         return index;
     }
 
+    public bool CanAddItem(ItemSO _itemData)
+    {
+        int index = FindFirstItem(_itemData);
+        if (index != -1) return true;
+
+        index = FindFirstEmpty();
+        if(index != -1) return true;
+
+        return false;
+    }
+
+
     public Slot GetSlot(int _index)
     { return slots[_index]; }
+
+    public int HowManyItem(ItemSO _itemData)
+    {
+        int count = 0;
+        for(int i=0;i<slots.Length;i++)
+        {
+            if (slots[i].CurItemData == _itemData)
+                count += slots[i].CurItemCount;
+        }
+        return count;
+    }
+   
 
 }

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    private static PlayerControl instance;
+    public static PlayerControl Instance
+    { get { return instance; } }
    
     private Rigidbody rb;
 
@@ -11,11 +14,17 @@ public class PlayerControl : MonoBehaviour
         { get { return moveDirection; } }
     public bool IsInteracting = false;
 
-    
+    private PlayerInteract interactor;
 
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+
         rb = GetComponent<Rigidbody>();
+        interactor = GetComponent<PlayerInteract>();
         
     }
 
@@ -29,6 +38,15 @@ public class PlayerControl : MonoBehaviour
         {
             moveDirection = Vector3.zero;
             return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(interactor!=null)
+            {
+                interactor.OnInteractWithCurrentTarget();
+                IsInteracting = true;
+            }
         }
 
         float moveX = Input.GetAxisRaw("Horizontal");

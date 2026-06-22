@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512410157596f2b459cb93547d857682, type: 3}
+  m_Name: 02_Quest
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questID: 2
+  questName: "\uD669\uC218\uC815\uC774 \uB204\uAD6C\uC57C"
+  questExplanation: "\uC624\uB80C\uC9C0\uBE5B \uAD11\uBB3C\uC744 \uBCF8\uC801\uC788\uB098?
+    \uADF8\uAC74 \uC2DC\uD2B8\uB9B0\uC774\uB77C\uACE0\uB3C4 \uBD88\uB9AC\uB294 \uD669\uC218\uC815\uC77C\uC138.
+    \uADF8\uAC78 3\uAC1C\uB9CC \uAC00\uC838\uB2E4\uC8FC\uAC8C."
+  goalItem: {fileID: 11400000, guid: 5d29bbe6c5f4d4c479688761b5a0d66e, type: 2}
+  goalItemCount: 3
+  RewardMoney: 50

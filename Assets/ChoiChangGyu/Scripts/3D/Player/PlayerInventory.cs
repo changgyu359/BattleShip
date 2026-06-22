@@ -21,6 +21,11 @@ public class PlayerInventory : MonoBehaviour
         else
             Destroy(gameObject);
 
+        
+    }
+
+    private void Start()
+    {
         inventory.InitInventory();
         invenUI.InitInventoryUI();
     }

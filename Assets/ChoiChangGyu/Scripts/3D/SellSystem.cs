@@ -49,7 +49,9 @@ public class SellSystem : MonoBehaviour
         SellSystemManager.Instance.Inven.RemoveManyItem(mySellItem, sellCount);
         int count = SellSystemManager.Instance.Inven.HowManyItem(mySellItem);
         SetHasCount(count);
+        Wallet.Instance.GetMoney(sellCount * sellPrice);
         PlayerInventory.Instance.invenUI.Redraw();
+        PlayerInventory.Instance.invenUI.SetMoney();
         
         ResetSystem();
     }

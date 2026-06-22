@@ -65,17 +65,17 @@ public class Ore : MonoBehaviour
 
         while (elapsed < shakeDuration)
         {
-            // 랜덤한 방향으로 아주 살짝 이동
+            
             float x = Random.Range(-1f, 1f) * shakeIntensity;
             float z = Random.Range(-1f, 1f) * shakeIntensity;
 
             transform.localPosition = originalPos + new Vector3(x, 0, z);
 
             elapsed += Time.deltaTime;
-            yield return null; // 다음 프레임까지 대기
+            yield return null; 
         }
 
-        // 효과 끝나면 원래 위치로 복귀
+        
         transform.localPosition = originalPos;
     }
 

@@ -7,7 +7,7 @@ public class UIManager3D : MonoBehaviour
     { get { return instance; } }
 
     [SerializeField]
-    private GameObject invenPannel;
+    private GameObject invenParrent;
 
     private void Awake()
     {
@@ -23,8 +23,9 @@ public class UIManager3D : MonoBehaviour
 
     public void ToggleInventory()
     {
-        bool isActive = invenPannel.activeSelf;
-        invenPannel.SetActive(!isActive);
+        bool isActive = invenParrent.activeSelf;
+        invenParrent.SetActive(!isActive);
+
     }
 
 }

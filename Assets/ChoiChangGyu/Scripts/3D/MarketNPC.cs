@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -5,12 +6,21 @@ public class MarketNPC : MonoBehaviour, IInteractable
 {
 
     [SerializeField]
-    private GameObject NPCInteractParent;
+    private GameObject NPCTalkingPannel;
     [SerializeField]
     private GameObject marketPannel;
+    [SerializeField]
+    private GameObject marketExitBtn;
+    [SerializeField]
+    private GameObject buttonParent;
+    [SerializeField]
+    private GameObject questParent;
+
 
     [SerializeField]
     private TextMeshProUGUI marketTalk;
+
+    [SerializeField] private List<QuestSO> npcQuests;
 
     private Animator anim;
 
@@ -22,7 +32,8 @@ public class MarketNPC : MonoBehaviour, IInteractable
     //IInteractable
     public void OnInteract()
     {
-        NPCInteractParent.SetActive(true);
+        NPCTalkingPannel.SetActive(true);
+        buttonParent.SetActive(true);
         anim.SetBool("Talking", true);
         marketTalk.text = "안녕하신가, 힘세고 강한 아침!";
     }
@@ -32,11 +43,15 @@ public class MarketNPC : MonoBehaviour, IInteractable
         marketPannel.SetActive(true);
         SellSystemManager.Instance.Culculate();
         marketTalk.text = "광물을 많이 모아왔는가?";
+        buttonParent.SetActive(false);
+        marketExitBtn.SetActive(true);
     }
 
     public void Quest()
     {
         marketTalk.text = "내가 좀 부탁할게 있다네.";
+        questParent.SetActive(true);
+        NPCQuestUI.Instance.OpenQuestUI(npcQuests);
     }
 
     public void Talk()
@@ -60,11 +75,19 @@ public class MarketNPC : MonoBehaviour, IInteractable
 
     public void ExitInteract()
     {
-        NPCInteractParent.SetActive(false);
+        NPCTalkingPannel.SetActive(false);
+        buttonParent.SetActive(false);
         anim.SetBool("Talking",false);
         PlayerControl.Instance.IsInteracting = false;
     }
 
+    public void MarketExitBtn()
+    {
+        marketExitBtn.SetActive(false);
+        marketPannel.SetActive(false);
+        buttonParent.SetActive(true);
+        marketTalk.text = "더 필요한게 있는가?";
+    }
 
 
 }

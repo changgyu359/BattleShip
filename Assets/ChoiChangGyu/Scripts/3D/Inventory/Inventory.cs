@@ -36,12 +36,14 @@ public class Inventory : MonoBehaviour
             else
             {
                 slots[index].SetItem(_itemData);
+                QuestManager.Instance.CheckQuestProgress(_itemData,HowManyItem(_itemData));
                 return true;
             }
         }
         else
         {
             slots[index].ItemUp(1);
+            QuestManager.Instance.CheckQuestProgress(_itemData, HowManyItem(_itemData));
             return true;
         }
     }
@@ -52,7 +54,10 @@ public class Inventory : MonoBehaviour
         if (index == -1)
             Debug.LogError("해당 아이템이 존재하지 않습니다!");
         else
+        {
             slots[index].ItemDown();
+            QuestManager.Instance.CheckQuestProgress(_itemData, HowManyItem(_itemData));
+        }
     }
 
     public void RemoveManyItem(ItemSO _itemData, int _count)
@@ -66,7 +71,7 @@ public class Inventory : MonoBehaviour
                 slots[index].ItemDown(Mathf.Min(_count, tempCount));
                 _count -= tempCount;
             }
-            
+            QuestManager.Instance.CheckQuestProgress(_itemData, HowManyItem(_itemData));
         }
         else
         {

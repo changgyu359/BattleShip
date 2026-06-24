@@ -24,6 +24,9 @@ public class PlayerInteract : MonoBehaviour
     public void OnInteractWithCurrentTarget()
     {
         if(currentInteractable != null)
+        {
             currentInteractable.OnInteract();
+            PlayerControl.Instance.IsInteracting = true;
+        }
     }
 }

@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
             else
             {
                 slots[index].SetItem(_itemData);
-                QuestManager.Instance.CheckQuestProgress(_itemData,HowManyItem(_itemData));
+                QuestManager.Instance.CheckQuestProgress(_itemData,HowManyItem(_itemData)); 
                 return true;
             }
         }
@@ -48,17 +48,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void RemoveOneItem(ItemSO _itemData)
-    {
-        int index = FindLowerItem(_itemData);
-        if (index == -1)
-            Debug.LogError("해당 아이템이 존재하지 않습니다!");
-        else
-        {
-            slots[index].ItemDown();
-            QuestManager.Instance.CheckQuestProgress(_itemData, HowManyItem(_itemData));
-        }
-    }
+  
 
     public void RemoveManyItem(ItemSO _itemData, int _count)
     {

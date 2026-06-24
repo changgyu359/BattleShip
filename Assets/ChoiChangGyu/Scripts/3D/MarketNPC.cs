@@ -35,6 +35,7 @@ public class MarketNPC : MonoBehaviour, IInteractable
         NPCTalkingPannel.SetActive(true);
         buttonParent.SetActive(true);
         anim.SetBool("Talking", true);
+        QuestUI.Instance.ShutDownTrackerPanel();
         marketTalk.text = "안녕하신가, 힘세고 강한 아침!";
     }
 
@@ -51,6 +52,7 @@ public class MarketNPC : MonoBehaviour, IInteractable
     {
         marketTalk.text = "내가 좀 부탁할게 있다네.";
         questParent.SetActive(true);
+        buttonParent.SetActive(false);
         NPCQuestUI.Instance.OpenQuestUI(npcQuests);
     }
 
@@ -79,6 +81,7 @@ public class MarketNPC : MonoBehaviour, IInteractable
         buttonParent.SetActive(false);
         anim.SetBool("Talking",false);
         PlayerControl.Instance.IsInteracting = false;
+        QuestUI.Instance.UpdateTracker();
     }
 
     public void MarketExitBtn()
@@ -89,5 +92,13 @@ public class MarketNPC : MonoBehaviour, IInteractable
         marketTalk.text = "더 필요한게 있는가?";
     }
 
+    public void QuestExitBtn()
+    {
+        questParent.SetActive(false);
+        buttonParent.SetActive(true);
+        marketTalk.text = "더 필요한게 있는가?";
+    }
 
+
+   
 }

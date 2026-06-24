@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffcea28fc823c443955fb8c4b586972, type: 3}
   m_Name: 02_Citrin
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: 3
+  itemName: "\uD669\uC218\uC815"
   max: 2
   sellPrice: 10
   itemImage: {fileID: 21300098, guid: bb76618f4bae74c83b9d6654d0b2a47e, type: 3}

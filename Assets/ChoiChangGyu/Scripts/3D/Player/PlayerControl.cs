@@ -45,7 +45,6 @@ public class PlayerControl : MonoBehaviour
             if(interactor!=null)
             {
                 interactor.OnInteractWithCurrentTarget();
-                IsInteracting = true;
             }
         }
 

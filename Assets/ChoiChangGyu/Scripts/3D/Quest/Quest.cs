@@ -1,7 +1,5 @@
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 
 public enum QuestState
 {

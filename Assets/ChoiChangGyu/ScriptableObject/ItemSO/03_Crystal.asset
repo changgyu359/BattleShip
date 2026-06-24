@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffcea28fc823c443955fb8c4b586972, type: 3}
   m_Name: 03_Crystal
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: 1
+  itemName: "\uD06C\uB9AC\uC2A4\uD0C8"
   max: 2
   sellPrice: 10
   itemImage: {fileID: 21300094, guid: bb76618f4bae74c83b9d6654d0b2a47e, type: 3}

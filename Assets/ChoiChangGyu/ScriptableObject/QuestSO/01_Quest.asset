@@ -18,6 +18,6 @@ MonoBehaviour:
     \uC5D0\uBA54\uB784\uB4DC\uB77C\uB124. \uC790\uC218\uC815\uACFC\uB294 \uB2EC\uB9AC
     \uC5B4\uB290\uC815\uB3C4 \uBAA8\uC73C\uBA74 \uD314\uB9CC\uD558\uC9C0. \uC5D0\uBA54\uB784\uB4DC\uB97C
     3\uAC1C \uAC00\uC838\uB2E4\uC8FC\uAC8C."
-  goalItem: {fileID: 11400000, guid: c7a2fa559e5376a45817e7591e5e34af, type: 2}
+  goalItem: {fileID: 11400000, guid: 2ce286e59ecf08b4791ec26d56866760, type: 2}
   goalItemCount: 3
   RewardMoney: 30

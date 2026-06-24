@@ -24,6 +24,8 @@ public class UIManager3D : MonoBehaviour
     public void ToggleInventory()
     {
         bool isActive = invenParrent.activeSelf;
+        PlayerInventory.Instance.invenUI.Redraw();
+        PlayerInventory.Instance.invenUI.SetMoney();
         invenParrent.SetActive(!isActive);
 
     }
